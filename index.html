@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -18,6 +17,26 @@
             text-align: center;
             padding: 1rem 0;
         }
+        nav {
+            background-color: #fff;
+            color: #93093f;
+            padding: 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        nav a {
+            color: #93093f;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
         .container {
             width: 80%;
             margin: 2rem auto;
@@ -26,7 +45,10 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
         .section {
-            margin-bottom: 1.5rem;
+            display: none;
+        }
+        .section.active {
+            display: block;
         }
         .end {
             background-color: rgba(255, 255, 255, 0.99);
@@ -43,9 +65,8 @@
             max-width: 100%;
             height: auto;
             display: block;
-            margin: 1rem auto; /* 修改 margin 属性 */
+            margin: 1rem auto;
         }
-
         .dish-item {
             margin-bottom: 1.5rem;
         }
@@ -156,18 +177,24 @@
 
 <header>
     <img src="shenzhen_university_logistics.jpg" alt="深圳大学后勤保障部" style="width: 30%;" >
+    <img src="640.gif" alt="深圳大学后勤保障部" style="height: 100%;"  >
     <h1>深大饭堂</h1>
 </header>
 
+<nav>
+    <a onclick="showSection('intro')">食堂简介</a>
+    <a onclick="showSection('dishes')">菜品</a>
+    <a onclick="showSection('highlights')">饭堂亮点</a>
+</nav>
+
 <div class="container">
     <!-- 食堂简介 -->
-    <div class="section">
+    <div class="section" id="intro">
         <h2>食堂简介</h2>
 
         <h3>新 西 南 餐 厅</h3>
         <P>新西南餐厅位于西南片区，共有四层。各种各样的美食都容纳其中啦。从一楼的各式大众菜、土耳其烤肉卷、麻辣烫到二楼的烤肉饭、炒粉、猪杂汤再到三楼的炒饭、荷叶饭、点炒，通通都可以尝一遍！到了冬天还会有火锅和煲仔粥哟。</P>
         <img src="xinxinan.jpg" alt="食堂图片">
-
 
         <h3>老 西 南 餐 厅</h3>
         <p>老西南也位于西南片区，分两层。一楼卤水窗口的套餐很不错！叉烧、葱姜鸡、卤水豆腐……一荤一素加一个卤蛋八块钱就喂饱了。大众菜窗口的辣子鸡也要尝尝！ 餐厅门口还设有面包房，肉松包、手撕包、猪扒包、榴莲酥等等各种面包都有，上课前顺路来这里带走一个当早餐完全不是问题~</p>
@@ -178,9 +205,7 @@
         <img src="shiyan.jpg" alt="食堂图片">
 
         <h3>南 区 食 堂</h3>
-        <p>南区唯一的一个食堂，面积超大，常被称作南区大酒店。窗口特别多！不过有时候排的队也特别长……
-
-            一楼有烤肉套餐、大烧饼还有一些大众菜，二楼烧鸭好评，三楼是美食汇，聚集了各种不同的小餐饮店（三楼有潮汕肠粉、五谷鱼粉还有自助小火锅哦），总是能让人惊喜。</p>
+        <p>南区唯一的一个食堂，面积超大，常被称作南区大酒店。窗口特别多！不过有时候排的队也特别长……一楼有烤肉套餐、大烧饼还有一些大众菜，二楼烧鸭好评，三楼是美食汇，聚集了各种不同的小餐饮店（三楼有潮汕肠粉、五谷鱼粉还有自助小火锅哦），总是能让人惊喜。</p>
         <img src="nanqu.jpg" alt="食堂图片">
 
         <h3>西 丽 南 区 食 堂</h3>
@@ -189,9 +214,10 @@
     </div>
 
     <!-- 菜品 -->
-    <div class="section">
-        <h2>菜品</h2>
-        <p>我们提供各种中式和西式菜肴，无论您喜欢什么口味，都能在这里找到满意的选择。以下是我们的一些特色菜品：</p>
+    <div class="section" id="dishes">
+        <h2>菜品推荐</h2>
+        <p>深大饭堂提供了多种美味佳肴，以下是一些推荐菜品：</p>
+
         <div class="dish-item">
             <h3>新西南一楼五花肉饭</h3>
             <img src="wuhuaroufan.jpg" alt="五花肉饭">
@@ -203,6 +229,7 @@
                 <input type="radio" name="rating1" id="rating1-1"><label for="rating1-1">★</label>
             </div>
         </div>
+
         <div class="dish-item">
             <h3>听山餐厅-椰子鸡</h3>
             <img src="yeziji.jpg" alt="听山餐厅-椰子鸡">
@@ -214,16 +241,17 @@
                 <input type="radio" name="rating2" id="rating2-1"><label for="rating2-1">★</label>
             </div>
         </div>
-    </div>
-    <div class="dish-item">
-        <h3>清真餐厅-冒菜</h3>
-        <img src="maocai.jpg" alt="清真餐厅-冒菜">
-        <div class="rating">
-            <input type="radio" name="rating2" id="rating4-5"><label for="rating4-5">★</label>
-            <input type="radio" name="rating2" id="rating4-4"><label for="rating4-4">★</label>
-            <input type="radio" name="rating2" id="rating4-3"><label for="rating4-3">★</label>
-            <input type="radio" name="rating2" id="rating4-2"><label for="rating4-2">★</label>
-            <input type="radio" name="rating2" id="rating4-1"><label for="rating4-1">★</label>
+
+        <div class="dish-item">
+            <h3>清真餐厅-冒菜</h3>
+            <img src="maocai.jpg" alt="清真餐厅-冒菜">
+            <div class="rating">
+                <input type="radio" name="rating2" id="rating4-5"><label for="rating4-5">★</label>
+                <input type="radio" name="rating2" id="rating4-4"><label for="rating4-4">★</label>
+                <input type="radio" name="rating2" id="rating4-3"><label for="rating4-3">★</label>
+                <input type="radio" name="rating2" id="rating4-2"><label for="rating4-2">★</label>
+                <input type="radio" name="rating2" id="rating4-1"><label for="rating4-1">★</label>
+            </div>
         </div>
 
         <div class="dish-item">
@@ -238,6 +266,7 @@
                 <input type="radio" name="rating4" id="rating5-1"><label for="rating5-1">★</label>
             </div>
         </div>
+
         <div class="dish-item">
             <h3>丽湖风味餐厅-新疆牛肉烤包：</h3>
             <p>金黄色泽外皮，咬一口酥酥脆脆。炙烤后焦香四溢，再配上孜然风味牛肉，极致享受。<p>
@@ -250,6 +279,7 @@
                 <input type="radio" name="rating4" id="rating6-1"><label for="rating6-1">★</label>
             </div>
         </div>
+
         <div class="dish-item">
             <h3>伐檀餐厅-牛肉粿条：</h3>
             <p>汤底清香扑鼻，粿条Q弹软润，牛肉嫩滑不柴，美味到身心与味蕾都被治愈。<p>
@@ -262,6 +292,7 @@
                 <input type="radio" name="rating4" id="rating7-1"><label for="rating7-1">★</label>
             </div>
         </div>
+
         <div class="dish-item">
             <h3>伐木餐厅铁板牛肉饭：</h3>
             <p>软嫩多汁的牛肉与铁板火热碰撞，滋滋冒油，调料喷香，口味立刻加倍升级。<p>
@@ -277,7 +308,7 @@
 
         <div class="dish-item">
             <h3>采葛餐厅-烧鸭饭套餐：</h3>
-                <p>广式经典烧鸭饭，皮脆肉香味浓郁，色泽诱人，配上解腻的爽口青菜。<p>
+            <p>广式经典烧鸭饭，皮脆肉香味浓郁，色泽诱人，配上解腻的爽口青菜。<p>
             <img src="shaoyafan.jpg" alt="采葛餐厅-烧鸭饭套餐">
             <div class="rating">
                 <input type="radio" name="rating4" id="rating9-5"><label for="rating9-5">★</label>
@@ -289,70 +320,84 @@
         </div>
     </div>
 
-    <!-- 宣传亮点 -->
-    <div class="dish-item">
+    <!-- 饭堂亮点 -->
+    <div class="section" id="highlights">
         <h2>饭堂亮点</h2>
         <h3>刷手支付</h3>
         <p>由微信支付、腾讯微卡团队联合深圳大学创新试点的“校园一掌通”服务正式上线，该校大学生们只要开通服务，就可以刷掌购物和用餐。
             学生买东西、点饭菜，只用掌心对准刷掌机上的绿色圆环，1-2秒内就能完成支付。促进效率提升的同时，也极大地简化了操作。</p>
         <img src="shuashou.gif" alt="宣传活动图片">
     </div>
-
 </div>
+
 <div class="end">
     <img src="jiewei.jpg" alt="深圳大学后勤保障部" style="width: 100%;">
 </div>
-<!-- 投诉与意见箱按钮 -->
+
+<!-- Feedback Button -->
 <button class="feedback-button" id="feedbackBtn">投诉与意见箱</button>
 
-<!-- Modal -->
+<!-- The Modal -->
 <div id="feedbackModal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
-        <div class="feedback-form">
-            <h2>投诉与意见箱</h2>
-            <form action="submit_feedback.php" method="post">
-                <label for="name">姓名:</label>
-                <input type="text" id="name" name="name" required>
+        <h2>投诉与意见箱</h2>
+        <form class="feedback-form">
+            <label for="name">姓名:</label>
+            <input type="text" id="name" name="name" required>
 
-                <label for="email">电子邮件:</label>
-                <input type="email" id="email" name="email" required>
+            <label for="email">电子邮件:</label>
+            <input type="email" id="email" name="email" required>
 
-                <label for="feedback">意见或投诉:</label>
-                <textarea id="feedback" name="feedback" rows="5" required></textarea>
+            <label for="feedback">您的意见或投诉:</label>
+            <textarea id="feedback" name="feedback" rows="4" required></textarea>
 
-                <button type="submit">提交</button>
-            </form>
-        </div>
+            <button type="submit">提交</button>
+        </form>
     </div>
 </div>
 
 <script>
-    // Get the modal
+    // 获取模态框
     var modal = document.getElementById("feedbackModal");
 
-    // Get the button that opens the modal
+    // 获取按钮
     var btn = document.getElementById("feedbackBtn");
 
-    // Get the <span> element that closes the modal
+    // 获取 <span> 元素，设置关闭模态框功能
     var span = document.getElementsByClassName("close")[0];
 
-    // When the user clicks the button, open the modal
+    // 点击按钮打开模态框
     btn.onclick = function() {
         modal.style.display = "block";
     }
 
-    // When the user clicks on <span> (x), close the modal
+    // 点击 <span> 元素关闭模态框
     span.onclick = function() {
         modal.style.display = "none";
     }
 
-    // When the user clicks anywhere outside of the modal, close it
+    // 在用户点击模态框内容区外时，关闭模态框
     window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
         }
     }
+
+    function showSection(sectionId) {
+        // 隐藏所有section
+        var sections = document.querySelectorAll('.section');
+        sections.forEach(function(section) {
+            section.classList.remove('active');
+        });
+
+        // 显示对应的section
+        var sectionToShow = document.getElementById(sectionId);
+        sectionToShow.classList.add('active');
+    }
+
+    // 默认显示第一个section
+    showSection('intro');
 </script>
 
 </body>
